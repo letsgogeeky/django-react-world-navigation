@@ -10,6 +10,10 @@ class City(models.Model):
 
     class Meta:
         db_table = 'city'
+        #
+        # indexes = [
+        #     models.Index(fields=['countrycode'])
+        # ]
 
 
 class Country(models.Model):
@@ -31,6 +35,10 @@ class Country(models.Model):
 
     class Meta:
         db_table = 'country'
+        # indexes = [
+        #     models.Index(fields=['continent', 'region']),
+        #     models.Index(fields=['continent'])
+        # ]
 
 
 class Countrylanguage(models.Model):

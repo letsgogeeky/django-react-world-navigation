@@ -46,7 +46,7 @@ function App() {
               <Country />
             </Route>
             <Route path='/'>
-              <H    ome />
+              <Home />
             </Route>
           </Switch>
         </Router>

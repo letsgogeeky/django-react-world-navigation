@@ -16,11 +16,13 @@ def char_count(request):
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
+    filterset_fields = ('continent', 'region')
 
 
 class CityViewSet(viewsets.ModelViewSet):
     queryset = City.objects.all()
     serializer_class = CitySerializer
+    filterset_fields = ('countrycode', 'district')
 
 
 class ContinentApiView(APIView):
