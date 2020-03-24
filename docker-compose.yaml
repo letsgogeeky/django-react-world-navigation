@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+    db:
+        build:
+            context: ./db
+            dockerfile: Dockerfile
+        environment: 
+            POSTGRES_USER: ramy
+            POSTGRES_DB: world
+            POSTGRES_PASS: world123
+        volumes:
+            - ./var/pgdata:/var/lib/postgresql/data
+        ports: 
+            - 5432
+    backend:
+        build: ./backend
+        volumes:
+        - ./backend:/app/backend
+        restart: on-failure
+        ports:
+        - "8000:8000"
+        stdin_open: true
+        tty: true
+        depends_on: 
+            - db
+        command: python3 manage.py runserver 0.0.0.0:8000 
+
+    frontend:
+        build: ./frontend
+        volumes:
+        - ./frontend:/app
+
+        - /app/node_modules
+        ports:
+        - "3000:3000"
+        stdin_open: true
+        environment:
+        - NODE_ENV=deveplement
+        depends_on:
+        - backend
+        command: npm start
