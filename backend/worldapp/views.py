@@ -30,3 +30,10 @@ class ContinentApiView(APIView):
         continents = Country.objects.distinct('continent')
         serialized = CountrySerializer(continents, many=True)
         return Response(serialized.data)
+
+
+class RegionApiView(APIView):
+    def get(self, request):
+        regions = Country.objects.distinct('region')
+        serialized = CountrySerializer(regions, many=True)
+        return Response(serialized.data)

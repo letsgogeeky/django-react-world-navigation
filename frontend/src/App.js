@@ -4,11 +4,11 @@ import 'semantic-ui-css/semantic.min.css'
 
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { Button } from 'semantic-ui-react';
+import {Button, Container, Header} from 'semantic-ui-react';
 
 import { Country } from './containers/Country';
 
-import { Home } from './containers/Home';
+import Home  from './containers/Home';
 
 function handleSubmit(evt) {
   const text = document.querySelector('#char-input').value
@@ -22,23 +22,13 @@ function handleSubmit(evt) {
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <label htmlFor='char-input'>How many characters does</label>
-        <input id='char-input' type='text' />
-        <button onClick={handleSubmit}>have? TELL ME!</button>
-        <Router>
-
-
-          <Button as={Link} to="/country">
-            Country
-        </Button>
-           <Button as={Link} to="/city">
-            City
-        </Button>
-          <Button as={Link} to="/regions">
-            Regions
-        </Button>
+      <Container>
+      <Header as='h1'>World Navigator</Header>
+      <p>The data seems to be greatly outdated so don't use the presented data as reliable source of truth.</p>
+      <p>
+        This project is presented as a task to <strong>Adeva.co</strong> & <strong>Prometheus</strong>
+      </p>
+           <Router>
 
           <Switch>
 
@@ -50,12 +40,10 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </div>
+    </Container>
 
-      <div>
-        <h3 id='char-count'></h3>
-      </div>
-    </div>
+
+
   );
 }
 
