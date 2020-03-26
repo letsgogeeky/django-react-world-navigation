@@ -1,6 +1,9 @@
 export const FETCH_CONTINENTS = 'FETCH_CONTINENTS';
 export const GET_CONTINENT = 'GET_CONTINENT';
 
+export const FETCH_REGIONS = 'FETCH_REGIONS';
+export const GET_REGION = 'GET_REGION';
+
 export const FETCH_COUNTRIES = 'FETCH_COUNTRIES';
 export const GET_COUNTRY = 'GET_COUNTRY';
 

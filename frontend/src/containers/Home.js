@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getLeads} from "../actions/continent";
+import {getContinents} from "../actions/continent";
 import Loading from "../components/loading";
 import {Card, Message} from "semantic-ui-react";
 import ContinentCard from "../components/ContinentCard";
@@ -13,7 +13,7 @@ export class Home extends React.Component {
     };
 
     componentDidMount() {
-        this.props.getLeads();
+        this.props.getContinents();
     }
 
 
@@ -24,19 +24,18 @@ export class Home extends React.Component {
         if (this.props.isLoading) {
             return <Loading/>
         }
-        return <Fragment>
-
-            <Card.Group centered>
-                {this.props.continents.map((continent, index) => {
-                    return <ContinentCard key={index}
-                                          continent={continent}
-                                          onClick={() => this.onContinentClick(continent.continent)}
-                    />
-                })}
-            </Card.Group>
-
-
-        </Fragment>
+        return (
+            <Fragment>
+                <Card.Group centered>
+                    {this.props.continents.map((continent, index) => {
+                        return <ContinentCard key={index}
+                                              continent={continent}
+                                              onClick={() => this.onContinentClick(continent.continent)}
+                        />
+                    })}
+                </Card.Group>
+            </Fragment>
+        )
     }
 }
 
@@ -48,4 +47,4 @@ const mapStateToProps = (state) => ({
     isLoading: state.continents.isLoading,
     error: state.continents.error
 });
-export default connect(mapStateToProps, {getLeads})(Home)
+export default connect(mapStateToProps, {getContinents})(Home)

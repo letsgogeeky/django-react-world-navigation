@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Card } from 'semantic-ui-react'
+import {Link} from "react-router-dom";
 
-const ContinentCard = ({continent, onClick}) => (
+const ContinentCard = ({continent}) => (
     <Card>
       <Card.Content>
         <Card.Header>{continent.continent}</Card.Header>
@@ -12,7 +13,7 @@ const ContinentCard = ({continent, onClick}) => (
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button onClick={onClick} basic color='green'>
+          <Button as={Link} to={`/continent/${continent.continent}`} basic color='green'>
             Regions
           </Button>
           <Button basic color='grey'>

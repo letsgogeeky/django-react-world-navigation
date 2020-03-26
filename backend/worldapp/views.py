@@ -34,6 +34,6 @@ class ContinentApiView(APIView):
 
 class RegionApiView(APIView):
     def get(self, request):
-        regions = Country.objects.distinct('region')
+        regions = Country.objects.filter(continent__iexact=request.query_params.get('continent')).distinct('region')
         serialized = CountrySerializer(regions, many=True)
         return Response(serialized.data)

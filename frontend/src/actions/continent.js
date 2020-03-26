@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import {FETCH_CONTINENTS} from "./types";
 
-export const getLeads = () => dispatch => {
+export const getContinents = () => dispatch => {
     dispatch({
         type: FETCH_CONTINENTS, isLoading: true
     });
