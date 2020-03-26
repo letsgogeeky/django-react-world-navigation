@@ -3,7 +3,7 @@ import { Button, Card } from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 
 const ContinentCard = ({continent}) => (
-    <Card>
+    <Card raised>
       <Card.Content>
         <Card.Header>{continent.continent}</Card.Header>
           <Card.Meta><strong>Avg. Age: </strong>{continent.lifeexpectancy? continent.lifeexpectancy: 'Nobody lives there!'}</Card.Meta>

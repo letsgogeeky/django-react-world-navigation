@@ -1,10 +1,11 @@
+from django.db.models import Sum, Avg
 from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from worldapp.models import Country, City
-from worldapp.serializers import CountrySerializer, CitySerializer
+from worldapp.serializers import CountrySerializer, CitySerializer, RegionSerializer
 
 
 def char_count(request):
@@ -32,8 +33,16 @@ class ContinentApiView(APIView):
         return Response(serialized.data)
 
 
+class RegionsApiView(APIView):
+    def get(self, request):
+        regions = Country.objects.filter(continent__iexact=request.query_params.get('continent')).\
+            values('region').annotate(total_population=Sum('population'), avg_life=Avg('lifeexpectancy'))
+        serialized = RegionSerializer(regions, many=True)
+        return Response(serialized.data)
+
+
 class RegionApiView(APIView):
     def get(self, request):
-        regions = Country.objects.filter(continent__iexact=request.query_params.get('continent')).distinct('region')
-        serialized = CountrySerializer(regions, many=True)
+        region = Country.objects.filter(region__iexact=request.query_params.get('region')).first()
+        serialized = CountrySerializer(region)
         return Response(serialized.data)
