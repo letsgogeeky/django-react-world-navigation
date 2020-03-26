@@ -2,26 +2,20 @@ import React from 'react';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css'
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {Router, Route, Switch} from 'react-router-dom';
 
 import {Container, Header} from 'semantic-ui-react';
 
-import {Country} from './containers/Country';
+import Country from './containers/Country';
 
 import Home from './containers/Home';
 import Notfound from "./containers/NotFound";
 import Continent from "./containers/Continent";
 import Region from "./containers/Region";
+import CreateCity from "./containers/CreateCity";
 
-function handleSubmit(evt) {
-    const text = document.querySelector('#char-input').value
-
-    axios
-        .get(`/char_count?text=${text}`).then(({data}) => {
-        document.querySelector('#char-count').textContent = `${data.count} characters!`
-    })
-        .catch(err => console.log(err))
-}
+import history from "./history";
+import EditCity from "./containers/EditCity";
 
 function App() {
     return (
@@ -31,12 +25,14 @@ function App() {
             <p>
                 This project is presented as a task to <strong>Adeva.co</strong> & <strong>Prometheus</strong>
             </p>
-            <Router>
+            <Router history={history}>
 
                 <Switch>
                     <Route path='/continent/:name' component={Continent}/>
                     <Route path='/region/:name' component={Region}/>
                     <Route path='/country/:code' component={Country}/>
+                    <Route path='/city/create/:code' component={CreateCity}/>
+                    <Route path='/city/edit/:id' component={EditCity}/>
                     <Route exact path='/' component={Home}/>
                     <Route component={Notfound} />
                 </Switch>

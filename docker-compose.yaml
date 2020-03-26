@@ -16,7 +16,7 @@ services:
         build: ./backend
         volumes:
         - ./backend:/app/backend
-        restart: on-failure
+        restart: always
         ports:
         - "8000:8000"
         stdin_open: true

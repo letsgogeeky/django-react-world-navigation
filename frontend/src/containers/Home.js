@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {getContinents} from "../actions/continent";
 import Loading from "../components/loading";
-import {Card, Header, Message} from "semantic-ui-react";
-import ContinentCard from "../components/ContinentCard";
+import {Button, Card, Header, Message} from "semantic-ui-react";
+import EntityCard from "../components/EntityCard";
 import GooglePieChart from "../components/GooglePieChart";
+import {Link} from "react-router-dom";
 
 
 export class Home extends React.Component {
@@ -25,7 +26,7 @@ export class Home extends React.Component {
         });
 
         return <Fragment>
-            <Header size='medium'>Population breakdown</Header>
+            <Header size='medium'>Continents & Population breakdown</Header>
             <GooglePieChart data={populationArr}/>
         </Fragment>
     }
@@ -42,16 +43,18 @@ export class Home extends React.Component {
             <Fragment>
                 {this.renderPopulationChart(this.props.continents)}
 
-                 <Header size='medium'>Continents</Header>
                 <Card.Group centered>
                     {this.props.continents.map((continent, index) => {
-                        return <ContinentCard key={index}
-                                              continent={continent}
-                                              onClick={() => this.onContinentClick(continent.continent)}
-                        />
+                        return <EntityCard key={index}
+                                           name={continent.continent}
+                                           data={continent}
+                                           onClick={() => this.onContinentClick(continent.continent)}>
+                            <Button as={Link} to={`/continent/${continent.continent}`} basic color='green'>
+                                View Details
+                            </Button>
+                        </EntityCard>
                     })}
                 </Card.Group>
-
             </Fragment>
         )
     }

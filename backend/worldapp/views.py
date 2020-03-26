@@ -4,26 +4,29 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from worldapp.models import Country, City
-from worldapp.serializers import CountrySerializer, CitySerializer, RegionSerializer, ContinentSerializer
-
-
-def char_count(request):
-    text = request.GET.get("text", "")
-
-    return JsonResponse({"count": len(text)})
+from worldapp.models import Country, City, CountryLanguage
+from worldapp.serializers import CountrySerializer, CitySerializer, RegionSerializer, ContinentSerializer, \
+    CountryLanguageSerializer
 
 
 class CountryViewSet(viewsets.ModelViewSet):
-    queryset = Country.objects.all()
     serializer_class = CountrySerializer
     filterset_fields = ('continent', 'region')
+
+    def get_queryset(self):
+        return Country.objects.all().annotate(avg_life=Avg('lifeexpectancy'))
 
 
 class CityViewSet(viewsets.ModelViewSet):
     queryset = City.objects.all()
     serializer_class = CitySerializer
     filterset_fields = ('countrycode', 'district')
+
+
+class CountryLanguageViewSet(viewsets.ModelViewSet):
+    queryset = CountryLanguage.objects.all()
+    serializer_class = CountryLanguageSerializer
+    filterset_fields = ('countrycode',)
 
 
 class ContinentApiView(APIView):

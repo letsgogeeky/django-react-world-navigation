@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from worldapp.models import Country, City
+from worldapp.models import Country, City, CountryLanguage
+
+
+class CountryLanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CountryLanguage
+        fields = '__all__'
 
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -20,10 +26,11 @@ class RegionSerializer(serializers.ModelSerializer):
     region = serializers.CharField()
     total_population = serializers.IntegerField()
     avg_life = serializers.DecimalField(max_digits=5, decimal_places=2)
+    total_gnp = serializers.IntegerField()
 
     class Meta:
         model = Country
-        fields = ('region', 'total_population', 'avg_life')
+        fields = ('region', 'total_population', 'avg_life', 'total_gnp')
 
 
 class ContinentSerializer(serializers.ModelSerializer):

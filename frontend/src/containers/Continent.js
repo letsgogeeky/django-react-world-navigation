@@ -2,21 +2,23 @@ import React, {Fragment} from 'react'
 import {connect} from "react-redux";
 import {fetchRegions} from "../actions/region";
 import Loading from "../components/loading";
-import {Button, Card, Checkbox, Form, Header, Table} from "semantic-ui-react";
-import RegionCard from "../components/RegionCard";
+import {Breadcrumb, Button, Card, Checkbox, Form, Header, Table} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import GooglePieChart from "../components/GooglePieChart";
+import EntityCard from "../components/EntityCard";
 
 class Continent extends React.Component {
     constructor() {
         super();
         this.state = {
-            isTable: false
+            isTable: false,
+            name: ''
         }
     }
 
     componentDidMount() {
         const {name} = this.props.match.params;
+        this.setState({name: name});
         this.props.fetchRegions(name);
     }
 
@@ -32,7 +34,6 @@ class Continent extends React.Component {
         });
 
         return <Fragment>
-            <Header size='medium'>Population breakdown</Header>
             <GooglePieChart data={populationArr}/>
         </Fragment>
     }
@@ -41,7 +42,11 @@ class Continent extends React.Component {
         return (
             <Card.Group centered>
                 {regions.map((region, index) => {
-                    return <RegionCard key={index} region={region}/>
+                    return <EntityCard name={region.region} key={index} data={region}>
+                        <Button as={Link} to={`/region/${region.region}`} basic color='green'>
+                    View Details
+                </Button>
+                    </EntityCard>
                 })}
             </Card.Group>
         )
@@ -83,9 +88,15 @@ class Continent extends React.Component {
         }
         return (
             <Fragment>
+                <Breadcrumb>
+                    <Breadcrumb.Section href={'/'}>Continents</Breadcrumb.Section>
+                    <Breadcrumb.Divider/>
+                    <Breadcrumb.Section active>
+                        {this.state.name}
+                    </Breadcrumb.Section>
+                </Breadcrumb>
+                <Header size='medium'>{this.state.name} Regions & Population breakdown</Header>
                 {this.renderPopulationChart(this.props.regions)}
-
-                 <Header size='medium'>Regions of {this.props.match.params.name}</Header>
                 <Form>
                     <Form.Group>
                     <Form.Field>

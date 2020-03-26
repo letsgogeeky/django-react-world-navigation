@@ -4,6 +4,7 @@ import _ from 'lodash';
 const initialState = {
     isLoading: false,
     cities: [],
+    currentCity: null,
     next: null,
     prev: null,
 };
@@ -15,14 +16,14 @@ export default (state = initialState, action) => {
                 ...state,
                 next: action.payload.next,
                 prev: action.payload.prev,
-                cities: {..._.mapKeys(action.payload, 'id')}
+                cities: {..._.mapKeys(action.payload.results, 'id')}
             };
         case ADD_CITY:
             return {...state, cities: {...state.cities, [action.payload.id]: action.payload}};
         case UPDATE_CITY:
             return {...state, cities: {...state.cities, [action.payload.id]: action.payload}};
         case GET_CITY:
-            return {...state, cities: {...state.cities, [action.payload.id]: action.payload}};
+            return {...state, currentCity: action.payload};
         case DELETE_CITY:
             return {...state, cities: _.omit(state.cities, action.payload)};
         default:

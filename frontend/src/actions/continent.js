@@ -6,7 +6,7 @@ export const getContinents = () => dispatch => {
     dispatch({
         type: FETCH_CONTINENTS, isLoading: true
     });
-    axios.get('/continents/')
+    axios.get('/api/continents/')
         .then(res => {
             dispatch({
                 type: FETCH_CONTINENTS,

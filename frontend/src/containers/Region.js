@@ -4,9 +4,10 @@ import Loading from "../components/loading";
 import {Breadcrumb, Button, Card, Checkbox, Form, Header, Table} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import {getCountriesInRegion} from "../actions/country";
-import CountryCard from "../components/CountryCard";
 import {getRegion} from "../actions/region";
 import GoogleMapChart from "../components/GoogleMapChart";
+import EntityCard from "../components/EntityCard";
+import CountryCard from "../components/CountryCard";
 
 class Region extends React.Component {
     constructor() {
@@ -31,7 +32,8 @@ class Region extends React.Component {
         return (
             <Card.Group centered>
                 {countries.map((country, index) => {
-                    return <CountryCard key={index} country={country}/>
+                    return <CountryCard key={index} country={country}>
+                    </CountryCard>
                 })}
             </Card.Group>
         )
@@ -89,9 +91,9 @@ class Region extends React.Component {
         return (
             <Fragment>
                 <Breadcrumb>
-                    <Breadcrumb.Section link href={'/'}>Continents</Breadcrumb.Section>
+                    <Breadcrumb.Section href={'/'}>Continents</Breadcrumb.Section>
                     <Breadcrumb.Divider/>
-                    <Breadcrumb.Section link href={`/continent/${this.props.region.continent}`}>
+                    <Breadcrumb.Section href={`/continent/${this.props.region.continent}`}>
                         {this.props.region.continent}
                     </Breadcrumb.Section>
                     <Breadcrumb.Divider/>

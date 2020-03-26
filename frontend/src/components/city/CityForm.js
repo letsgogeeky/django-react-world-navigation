@@ -1,8 +1,9 @@
 import React from 'react'
 import { Form, Input, Button } from 'semantic-ui-react'
 
-const CityForm = ({onFieldChange, onFormSubmit}) => (
-  <Form onSubmit={onFormSubmit}>
+const CityForm = ({onFieldChange, onFormSubmit, city}) => {
+    const {name, population, district} = city;
+  return <Form onSubmit={onFormSubmit}>
     <Form.Group widths='equal'>
       <Form.Field
         control={Input}
@@ -10,6 +11,7 @@ const CityForm = ({onFieldChange, onFormSubmit}) => (
         placeholder='City name'
         name='name'
         required={true}
+        value={name}
         onChange={onFieldChange}
       />
       <Form.Field
@@ -18,6 +20,7 @@ const CityForm = ({onFieldChange, onFormSubmit}) => (
         placeholder='Population'
         name='population'
         type='number'
+        value={population}
         required={true}
         onChange={onFieldChange}
       />
@@ -28,6 +31,7 @@ const CityForm = ({onFieldChange, onFormSubmit}) => (
       label='District'
       placeholder='District'
       name='district'
+      value={district}
       required={true}
       onChange={onFieldChange}
     />
@@ -36,8 +40,9 @@ const CityForm = ({onFieldChange, onFormSubmit}) => (
       id='form-button-control-public'
       control={Button}
       content='Confirm'
+      color='green'
     />
   </Form>
-);
+};
 
 export default CityForm
