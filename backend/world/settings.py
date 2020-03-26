@@ -74,6 +74,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'world.wsgi.application'
 
 # Database
