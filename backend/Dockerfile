@@ -12,7 +12,8 @@ COPY . /app/backend
 
 EXPOSE 8000
 
-#RUN python manage.py migrate worldapp 0001 --fake
+
+# RUN python manage.py migrate worldapp 0001 --fake
 
 #RUN python manage.py migrate
 

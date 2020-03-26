@@ -24,7 +24,7 @@ SECRET_KEY = 'rzgfj%7tm2=9&+5vaau!t*0(-a72t7+f71s=yz*i$yvw@d)p=o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['backend', '127.0.0.1']
+ALLOWED_HOSTS = ['backend', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -79,27 +79,28 @@ WSGI_APPLICATION = 'world.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'world',
-#         'USER': 'ramy',
-#         'PASSWORD': 'world123',
-#         'HOST': 'db',
-#         'PORT': '5432'
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'world',
-        'USER': 'postgres',
-        'PASSWORD': '!@Arch!@34',
-        'HOST': '127.0.0.1',
+        'USER': 'ramy',
+        'PASSWORD': 'world123',
+        'HOST': 'db',
         'PORT': '5432'
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'world',
+#         'USER': 'postgres',
+#         'PASSWORD': '!@Arch!@34',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432'
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
