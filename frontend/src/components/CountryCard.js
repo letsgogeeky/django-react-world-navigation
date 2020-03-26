@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Card, Flag} from 'semantic-ui-react'
+import {Button, Card, Flag, Label} from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 
 const CountryCard = ({country, onShowMapClick}) => (
@@ -7,6 +7,9 @@ const CountryCard = ({country, onShowMapClick}) => (
     <Card>
 
       <Card.Content>
+           <Label as='a' color='black' ribbon='right'>
+                <strong>GNP: </strong>$ {country.gnp}
+            </Label>
         <Card.Header><Flag name={country.code2.toLowerCase()} /> {country.name}</Card.Header>
           <Card.Meta><strong>Avg. Age: </strong>{country.lifeexpectancy? country.lifeexpectancy: 'Nobody lives there!'}</Card.Meta>
         <Card.Description>
