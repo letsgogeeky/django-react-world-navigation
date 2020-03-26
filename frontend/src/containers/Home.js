@@ -21,7 +21,7 @@ export class Home extends React.Component {
         let populationArr = [];
         populationArr.splice(0, 0, ['Country', 'Population'])
         continents.map((continent, index) => {
-            populationArr.push([continent.continent, continent.population]);
+            populationArr.push([continent.continent, continent.total_population]);
         });
 
         return <Fragment>
