@@ -16,15 +16,24 @@ def char_count(request):
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
+    filterset_fields = ('continent', 'region')
 
 
 class CityViewSet(viewsets.ModelViewSet):
     queryset = City.objects.all()
     serializer_class = CitySerializer
+    filterset_fields = ('countrycode', 'district')
 
 
 class ContinentApiView(APIView):
     def get(self, request):
         continents = Country.objects.distinct('continent')
         serialized = CountrySerializer(continents, many=True)
+        return Response(serialized.data)
+
+
+class RegionApiView(APIView):
+    def get(self, request):
+        regions = Country.objects.filter(continent__iexact=request.query_params.get('continent')).distinct('region')
+        serialized = CountrySerializer(regions, many=True)
         return Response(serialized.data)

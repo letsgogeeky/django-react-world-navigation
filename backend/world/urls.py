@@ -20,7 +20,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 
-from worldapp.views import char_count, CountryViewSet, CityViewSet, ContinentApiView
+from worldapp.views import char_count, CountryViewSet, CityViewSet, ContinentApiView, RegionApiView
 
 router = DefaultRouter()
 
@@ -30,5 +30,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('char_count', char_count, name='char_count'),
     path('continents/', ContinentApiView.as_view(), name='continents'),
+    path('regions/', RegionApiView.as_view(), name='regions'),
     url('^', include(router.urls))
 ]
