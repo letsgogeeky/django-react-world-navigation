@@ -4,6 +4,12 @@ It was a much fun building this project.
 
 Docker configuration in this project is meant for development environment, and will not be fully functional in production environment.
 
+### Continents
+![Continents](https://github.com/letsgogeeky/django-react-world-navigation/blob/dev/screenshots/continent.png?raw=true)
+
+### Regions
+![Regions](https://github.com/letsgogeeky/django-react-world-navigation/blob/dev/screenshots/region.png?raw=true)
+
 ## Technologies used
 
 ### Python & Django
