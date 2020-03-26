@@ -2,7 +2,7 @@ import React from 'react'
 import {Button, Card, Flag, Label} from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 
-const CountryCard = ({country, onShowMapClick}) => (
+const CountryCard = ({country}) => (
 
     <Card>
 

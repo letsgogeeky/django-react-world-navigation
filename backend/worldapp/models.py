@@ -41,7 +41,7 @@ class Country(models.Model):
         # ]
 
 
-class Countrylanguage(models.Model):
+class CountryLanguage(models.Model):
     countrycode = models.OneToOneField(Country, models.DO_NOTHING, db_column='countrycode', primary_key=True)
     language = models.TextField()
     isofficial = models.BooleanField()

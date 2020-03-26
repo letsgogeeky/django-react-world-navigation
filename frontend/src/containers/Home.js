@@ -50,12 +50,11 @@ export class Home extends React.Component {
                                            data={continent}
                                            onClick={() => this.onContinentClick(continent.continent)}>
                             <Button as={Link} to={`/continent/${continent.continent}`} basic color='green'>
-                    View Details
-                </Button>
+                                View Details
+                            </Button>
                         </EntityCard>
                     })}
                 </Card.Group>
-
             </Fragment>
         )
     }

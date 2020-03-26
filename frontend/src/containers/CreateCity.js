@@ -1,21 +1,29 @@
 import React, {Fragment} from "react";
 import {connect} from "react-redux";
-import CityForm from "./CityForm";
-import {addCity} from "../../actions/city";
 import PropTypes from 'prop-types';
+import CityForm from "../components/city/CityForm";
+import {addCity} from "../actions/city";
+import {Breadcrumb, Button, Divider, Header} from "semantic-ui-react";
+import {Link} from "react-router-dom";
+
 
 class CreateCity extends React.Component {
       constructor() {
         super();
         this.state = {
             city: {
-                countrycode: 'EGY'
+                countrycode: ''
             }
         }
     }
 
     componentDidMount() {
-
+        this.setState({
+            city: {
+                ...this.state.city,
+                countrycode: this.props.match.params.code
+            }
+        })
     }
 
     onFieldChange = (event) => {
@@ -34,7 +42,14 @@ class CreateCity extends React.Component {
 
     render() {
         return <Fragment>
-            <CityForm onFieldChange={this.onFieldChange} onFormSubmit={this.onFormSubmit}/>
+            <Header as='h2'>
+                Create a new City
+            </Header>
+            <CityForm city={this.state.city} onFieldChange={this.onFieldChange} onFormSubmit={this.onFormSubmit}/>
+            <Divider/>
+            <Button as={Link} to={`/country/${this.state.city.countrycode}`} color={'red'}>
+                Cancel
+            </Button>
         </Fragment>
     }
 
@@ -43,5 +58,7 @@ class CreateCity extends React.Component {
 CreateCity.propTypes = {
     addCity: PropTypes.func.isRequired
 };
+
+
 
 export default connect(null, {addCity})(CreateCity)

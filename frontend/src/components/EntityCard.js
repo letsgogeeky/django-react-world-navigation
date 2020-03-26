@@ -1,6 +1,5 @@
 import React from 'react'
-import {Button, Card, Label} from 'semantic-ui-react'
-import {Link} from "react-router-dom";
+import { Card, Label} from 'semantic-ui-react'
 
 const EntityCard = ({data, name, children}) => (
     <Card raised>

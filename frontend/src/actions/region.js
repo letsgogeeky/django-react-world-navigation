@@ -6,7 +6,7 @@ export const fetchRegions = (continentName) => dispatch => {
     dispatch({
         type: FETCH_REGIONS, isLoading: true
     });
-    axios.get(`/regions/?continent=${continentName}`)
+    axios.get(`/api/regions/?continent=${continentName}`)
         .then(res => {
             dispatch({
                 type: FETCH_REGIONS,
@@ -25,7 +25,7 @@ export const getRegion = (regionName) => dispatch => {
     dispatch({
         type: GET_REGION, isLoading: true
     });
-    axios.get(`/region/?region=${regionName}`)
+    axios.get(`/api/region/?region=${regionName}`)
         .then(res => {
             dispatch({
                 type: GET_REGION,

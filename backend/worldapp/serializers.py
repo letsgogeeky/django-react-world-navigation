@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from worldapp.models import Country, City
+from worldapp.models import Country, City, CountryLanguage
+
+
+class CountryLanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CountryLanguage
+        fields = '__all__'
 
 
 class CountrySerializer(serializers.ModelSerializer):
