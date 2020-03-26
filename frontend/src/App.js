@@ -11,6 +11,7 @@ import {Country} from './containers/Country';
 import Home from './containers/Home';
 import Notfound from "./containers/NotFound";
 import Continent from "./containers/Continent";
+import Region from "./containers/Region";
 
 function handleSubmit(evt) {
     const text = document.querySelector('#char-input').value
@@ -34,6 +35,7 @@ function App() {
 
                 <Switch>
                     <Route path='/continent/:name' component={Continent}/>
+                    <Route path='/region/:name' component={Region}/>
                     <Route path='/country/:code' component={Country}/>
                     <Route exact path='/' component={Home}/>
                     <Route component={Notfound} />

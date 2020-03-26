@@ -1,17 +1,13 @@
 import React from 'react'
-import { Button, Card } from 'semantic-ui-react'
+import {Button, Card, Flag} from 'semantic-ui-react'
+import {Link} from "react-router-dom";
 
-const CountryCard = ({country, onClick}) => (
+const CountryCard = ({country, onShowMapClick}) => (
 
     <Card>
 
       <Card.Content>
-        {/*<Image*/}
-        {/*  floated='right'*/}
-        {/*  size='mini'*/}
-        {/*  src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'*/}
-        {/*/>*/}
-        <Card.Header>{country.name}</Card.Header>
+        <Card.Header><Flag name={country.code2.toLowerCase()} /> {country.name}</Card.Header>
           <Card.Meta><strong>Avg. Age: </strong>{country.lifeexpectancy? country.lifeexpectancy: 'Nobody lives there!'}</Card.Meta>
         <Card.Description>
           <strong>Population: </strong>~ {country.population}
@@ -19,11 +15,8 @@ const CountryCard = ({country, onClick}) => (
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button onClick={onClick} basic color='green'>
-            Regions
-          </Button>
-          <Button basic color='grey'>
-            Map
+          <Button as={Link} to={`/country/${country.code}`} basic color='green'>
+            View Details
           </Button>
         </div>
       </Card.Content>

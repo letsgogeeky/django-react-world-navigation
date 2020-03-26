@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {getContinents} from "../actions/continent";
 import Loading from "../components/loading";
-import {Card, Message} from "semantic-ui-react";
+import {Card, Header, Message} from "semantic-ui-react";
 import ContinentCard from "../components/ContinentCard";
+import GooglePieChart from "../components/GooglePieChart";
 
 
 export class Home extends React.Component {
@@ -14,6 +15,19 @@ export class Home extends React.Component {
 
     componentDidMount() {
         this.props.getContinents();
+    }
+
+    renderPopulationChart(continents) {
+        let populationArr = [];
+        populationArr.splice(0, 0, ['Country', 'Population'])
+        continents.map((continent, index) => {
+            populationArr.push([continent.continent, continent.total_population]);
+        });
+
+        return <Fragment>
+            <Header size='medium'>Population breakdown</Header>
+            <GooglePieChart data={populationArr}/>
+        </Fragment>
     }
 
 
@@ -26,6 +40,9 @@ export class Home extends React.Component {
         }
         return (
             <Fragment>
+                {this.renderPopulationChart(this.props.continents)}
+
+                 <Header size='medium'>Continents</Header>
                 <Card.Group centered>
                     {this.props.continents.map((continent, index) => {
                         return <ContinentCard key={index}
@@ -34,6 +51,7 @@ export class Home extends React.Component {
                         />
                     })}
                 </Card.Group>
+
             </Fragment>
         )
     }
